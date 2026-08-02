@@ -1,0 +1,46 @@
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import type { Favorite } from '../data/favorites';
+import '../styles/favorites.css';
+
+interface Props {
+	title: string;
+	description: string;
+	favorites: Favorite[];
+}
+
+const { title, description, favorites } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section>
+				<h1>{title}</h1>
+				<p class="description">{description}</p>
+				<ul class="favorites">
+					{
+						favorites.map((favorite) => (
+							<li>
+								<a href={favorite.url}>
+									<h4 class="favorite-title">{favorite.title}</h4>
+									<p class="favorite-description">{favorite.description}</p>
+									<div class="tags">
+										{favorite.tags.map((tag) => <span class="tag">{tag}</span>)}
+									</div>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,10 @@
+---
+import FavoritesLayout from '../layouts/FavoritesLayout.astro';
+import { favorites } from '../data/favorites';
+---
+
+<FavoritesLayout
+	title="Favorites"
+	description="A collection of posts I've saved for later."
+	favorites={favorites}
+/>
